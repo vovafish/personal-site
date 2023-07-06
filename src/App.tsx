@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
+import NavBar from './NavBar';
 import Home from './pages/Home';
 import About from './pages/About';
 import ProjectList from './pages/ProjectList';
@@ -9,6 +10,7 @@ import NotFound from './pages/NotFound';
 export function App() {
   return (
     <div>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
