@@ -2,6 +2,7 @@
 import { useParams } from 'react-router-dom';
 
 import projects from '../projects';
+import NotFound from './NotFound';
 
 function ProjectPage() {
   // get directly from useParams
@@ -14,6 +15,10 @@ function ProjectPage() {
 
   // object disctructuring
   // const { projectId } = params;
+
+  if (!projectFound) {
+    return <NotFound />;
+  }
   return (
     <div className="p-5">
       <a href="#">
