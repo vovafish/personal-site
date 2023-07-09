@@ -1,5 +1,5 @@
 function Home() {
-  return <h1 className="bg-blue-100">Hello world!</h1>;
+  return <h1 className="">Home</h1>;
 }
 
 export default Home;

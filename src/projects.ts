@@ -11,6 +11,18 @@ const projects = [
     description: 'Cool design',
     stack: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'Gulp', 'SCSS/SASS'],
   },
+  {
+    link: 'project3',
+    name: 'Selling cards',
+    description: 'Many tech',
+    stack: ['HTML5', 'CSS3', 'JavaScript', 'React', 'SCSS/SASS'],
+  },
+  {
+    link: 'project4',
+    name: 'RandomO',
+    description: 'Cool design',
+    stack: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'Gulp', 'SCSS/SASS'],
+  },
 ];
 
 export default projects;
