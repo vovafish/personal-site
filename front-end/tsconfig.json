@@ -23,7 +23,8 @@
   "include": [
     "vite.config.ts",
     ".eslintrc.cjs",
-    "src"
+    "src",
+    "./back-end/src/server.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
