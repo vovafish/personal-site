@@ -1,8 +1,11 @@
 import express, {Response, Request, Application} from "express"
 
 const app: Application = express()
+// middleware
+app.use(express.json())
 
-app.get('/hello', (req: Request, res: Response) => {
+app.post('/hello', (req: Request, res: Response) => {
+    console.log(req.body);
     res.send('Hello');
 })
 
