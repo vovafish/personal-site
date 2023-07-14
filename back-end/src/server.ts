@@ -1,7 +1,7 @@
 import express, { Response, Request, Application } from "express"
 import { MongoClient } from "mongodb"
 
-import { db, connectToDb } from "./db.ts"
+import { db, connectToDb } from "./db.js"
 
 const app: Application = express()
 // middleware
@@ -15,7 +15,7 @@ app.get('/api/projects/:link', async (req, res) => {
     if (project) {
         res.json(project);
     } else {
-        res.sendStatus(404).send('Project not found');
+        res.sendStatus(404);
     }
 
 
@@ -60,4 +60,3 @@ connectToDb(() => {
 
     });
 });
-
