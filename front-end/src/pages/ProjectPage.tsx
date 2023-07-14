@@ -11,11 +11,10 @@ function ProjectPage() {
 
   const { projectId } = useParams();
 
-  console.log(projectId);
-
   useEffect(() => {
     const loadProjectInfo = async () => {
       const response = await axios.get(`/api/projects/${projectId}`);
+
       const newProjectInfo = response.data;
       setProjectInfo(newProjectInfo);
     };
