@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import projects from '../projects';
 import NotFound from './NotFound';
+import CommentsList from '../components/CommentsList';
 
 function ProjectPage() {
   const [projectInfo, setProjectInfo] = useState({ upvotes: 0, comments: [] });
@@ -49,7 +50,12 @@ function ProjectPage() {
           <p key={item}>{item}</p>
         ))}
       </div>
-      <Link to="/projects">Back</Link>
+      <div className="">
+        <Link to="/projects">Back</Link>
+      </div>
+      <div>
+        <CommentsList comments={projectInfo?.comments} />
+      </div>
     </main>
   );
 }
