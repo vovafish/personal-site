@@ -8,7 +8,10 @@ function CommentsList({ comments }: { comments: Comments[] }) {
     <>
       <h3>Comments:</h3>
       {comments?.map((comment: Comments) => (
-        <div className="" key={`${comment.postedBy}: ${comment.text}`}>
+        <div
+          className=""
+          key={`${comment.postedBy}: ${comment.text} : ${Math.random() * 10} `}
+        >
           <h4>{comment?.postedBy}</h4>
           <p>{comment?.text}</p>
         </div>
