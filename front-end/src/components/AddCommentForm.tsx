@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-function AddCommentForm({ projectLink, onProjectUpdated }: any) {
+function AddCommentForm({ projectLink, onProjectUpdated }) {
   const [name, setName] = useState('');
   const [commentText, setCommentText] = useState('');
 

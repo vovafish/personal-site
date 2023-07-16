@@ -69,9 +69,7 @@ function ProjectPage() {
       </div>
       <AddCommentForm
         projectLink={projectId}
-        onProjectUpdated={(updatedProjcet: any) =>
-          setProjectInfo(updatedProjcet)
-        }
+        onProjectUpdated={(updatedProjcet) => setProjectInfo(updatedProjcet)}
       />
       <div>
         <CommentsList comments={projectInfo?.comments} />

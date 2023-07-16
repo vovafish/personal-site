@@ -1,6 +1,4 @@
 import express, { Response, Request, Application } from "express"
-import { MongoClient } from "mongodb"
-
 import { db, connectToDb } from "./db.js"
 
 const app: Application = express()
@@ -29,7 +27,7 @@ app.put('/api/projects/:link/upvote', async (req, res) => {
     });
     const project = await db.collection('projects').findOne({ link })
     if (project) {
-        res.send(`The ${link} project now has ${project.upvotes} upvotes`)
+        res.json(project)
     } else {
         res.send(`That project doesn't exists`)
     }
@@ -47,7 +45,7 @@ app.post('/api/projects/:link/comments', async (req, res) => {
     const project = await db.collection('projects').findOne({ link })
 
     if (project) {
-        res.send(project.comments);
+        res.json(project);
     } else {
         res.send(`That project doesn't exist`)
     }
