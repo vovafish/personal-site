@@ -1,6 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 function SignUpPage() {
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
+  const [error, serError] = useState('');
+
+  const navigate = useNavigate();
+
+  const onSignUnClicked = () => {
+    alert('register');
+  };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -28,6 +41,8 @@ function SignUpPage() {
                   Your email
                 </label>
                 <input
+                  value={emailValue}
+                  onChange={(e) => setEmailValue(e.target.value)}
                   type="email"
                   name="email"
                   id="email"
@@ -44,6 +59,8 @@ function SignUpPage() {
                   Password
                 </label>
                 <input
+                  value={passwordValue}
+                  onChange={(e) => setPasswordValue(e.target.value)}
                   type="password"
                   name="password"
                   id="password"
@@ -60,6 +77,8 @@ function SignUpPage() {
                   Confirm password
                 </label>
                 <input
+                  value={confirmPasswordValue}
+                  onChange={(e) => setConfirmPasswordValue(e.target.value)}
                   type="confirm-password"
                   name="confirm-password"
                   id="confirm-password"
@@ -94,6 +113,12 @@ function SignUpPage() {
                 </div>
               </div>
               <button
+                disabled={
+                  !emailValue ||
+                  !passwordValue ||
+                  passwordValue !== confirmPasswordValue
+                }
+                onClick={onSignUnClicked}
                 type="submit"
                 className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
@@ -102,6 +127,7 @@ function SignUpPage() {
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?
                 <button
+                  onClick={() => navigate('/login')}
                   type="button"
                   className="font-medium text-blue-600 hover:underline dark:text-blue-500"
                 >
