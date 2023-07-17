@@ -2,8 +2,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+import useToken from '../auth/useToken';
 
 function LoginPage() {
+  const [token, setToken] = useToken();
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [error, serError] = useState('');
@@ -11,7 +15,13 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const onLogInClicked = async () => {
-    alert('LogIn');
+    const response = await axios.post('/api/login', {
+      email: emailValue,
+      password: passwordValue,
+    });
+    const { token } = response.data;
+    setToken(token);
+    navigate('/');
   };
 
   return (
