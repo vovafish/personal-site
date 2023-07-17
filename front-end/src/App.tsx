@@ -8,6 +8,7 @@ import About from './pages/About';
 import ProjectListPage from './pages/ProjectListPage';
 import ProjectPage from './pages/ProjectPage';
 import NotFound from './pages/NotFound';
+import PrivateRoute from './auth/PrivateRoute';
 
 export function App() {
   return (
