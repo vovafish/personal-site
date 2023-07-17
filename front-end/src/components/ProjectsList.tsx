@@ -34,7 +34,7 @@ function ProjectsList({ projects }: ProjectsListProps) {
               </h5>
             </a>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {project.description.substring(0, 100)}
+              {project.description.substring(0, 100)}...
             </p>
 
             <Link to={`/projects/${project.link}`}>
