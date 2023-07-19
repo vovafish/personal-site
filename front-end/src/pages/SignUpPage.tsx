@@ -21,6 +21,9 @@ function SignUpPage() {
 
   const onSignUpClicked = async () => {
     const response = await axios.post('/api/register', {
+      first_name: firstNameValue,
+      last_name: lastNameValue,
+      phone_number: phoneNumberValue,
       email: emailValue,
       password: passwordValue,
     });

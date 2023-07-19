@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link, useNavigate } from 'react-router-dom';
 import useUser from './auth/useUser';
+import useToken from './auth/useToken';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -9,7 +10,11 @@ function NavBar() {
     localStorage.removeItem('token');
     navigate('/login');
   };
+  const token = useToken();
   const user = useUser();
+  console.log(user);
+  console.log(token);
+
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

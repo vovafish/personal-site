@@ -1,6 +1,7 @@
 import express, { Response, Request, Application } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import {v4 as uuid} from 'uuid'
 
 import { db, connectToDb } from './db.js';
 import  sendEmail  from './util/sendEmail.js';
@@ -59,7 +60,7 @@ app.post('/api/projects/:link/comments', async (req, res) => {
 });
 
 //test
-app.post("/api/sendemail", async (req, res) => {
+/* app.post("/api/sendemail", async (req, res) => {
   const { email } = req.body;
 
   try {
@@ -78,7 +79,7 @@ app.post("/api/sendemail", async (req, res) => {
   } catch (error) {
     res.status(500).json(error.message);
   }
-});
+}); */
 
 app.post('/api/register', async (req, res) => {
   const { email, password, first_name, last_name, phone_number } = req.body;
@@ -91,6 +92,8 @@ app.post('/api/register', async (req, res) => {
 
   const passwordHash = await bcrypt.hash(password, 10);
 
+  const verificationString = uuid();
+
   const result = await db.collection('users').insertOne({
     email,
     first_name,
@@ -99,8 +102,28 @@ app.post('/api/register', async (req, res) => {
     passwordHash,
     isVerified: false,
     isAdmin: false,
+    verificationString,
   });
   const { insertedId } = result;
+
+  try {
+    await sendEmail({
+        send_to: email,
+        sent_from: process.env.EMAIL_USER,
+        reply_to: email,
+        subject: 'Please verify your email',
+        message: `
+            <h3>Hello</h3>
+            <p>Here is your verification link, click here:</p>
+            <p>http://localhost:3000/#/api/verify-email/${verificationString}</p>
+            <p>Regards Me</p>
+        `,
+    });
+} catch (e) {
+  console.log(e);
+  res.sendStatus(500);  
+}
+
 
   jwt.sign(
     {
