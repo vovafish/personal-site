@@ -1,7 +1,9 @@
 import express, { Response, Request, Application } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+
 import { db, connectToDb } from './db.js';
+import  sendEmail  from './util/sendEmail.js';
 
 const app: Application = express();
 // middleware
@@ -53,6 +55,28 @@ app.post('/api/projects/:link/comments', async (req, res) => {
     res.json(project);
   } else {
     res.send(`That project doesn't exist`);
+  }
+});
+
+//test
+app.post("/api/sendemail", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const send_to = email;
+    const sent_from = process.env.EMAIL_USER;
+    const reply_to = email;
+    const subject = "Test";
+    const message = `
+        <h3>Hello</h3>
+        <p>Thank for email</p>
+        <p>Regards...</p>
+    `;
+
+    await sendEmail(subject, message, send_to, sent_from, reply_to);
+    res.status(200).json(`All good`);
+  } catch (error) {
+    res.status(500).json(error.message);
   }
 });
 
