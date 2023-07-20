@@ -72,7 +72,7 @@ app.put('/api/verify-email', async (req, res) => {
   const { _id: id, email } = result;
   console.log(result);
 
-  await db.collection('users').updateOne({ _id: ObjectId(id) }, {
+  await db.collection('users').updateOne({ _id: new ObjectId(id) }, {
     $set: { isVerified: true }
   });
 
@@ -119,7 +119,7 @@ app.post('/api/register', async (req, res) => {
       message: `
             <h3>Hello</h3>
             <p>Here is your verification link, click here:</p>
-            <p>http://localhost:3000/#/api/verify-email/${verificationString}</p>
+            <p>http://localhost:3000/#/verify-email/${verificationString}</p>
             <p>Regards Me</p>
         `,
     });
