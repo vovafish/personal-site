@@ -1,10 +1,10 @@
 import express, { Response, Request, Application } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 
 import { db, connectToDb } from './db.js';
-import  sendEmail  from './util/sendEmail.js';
+import sendEmail from './util/sendEmail.js';
 
 const app: Application = express();
 // middleware
@@ -108,22 +108,21 @@ app.post('/api/register', async (req, res) => {
 
   try {
     await sendEmail({
-        send_to: email,
-        sent_from: process.env.EMAIL_USER,
-        reply_to: email,
-        subject: 'Please verify your email',
-        message: `
+      send_to: email,
+      sent_from: process.env.EMAIL_USER,
+      reply_to: email,
+      subject: 'Please verify your email',
+      message: `
             <h3>Hello</h3>
             <p>Here is your verification link, click here:</p>
             <p>http://localhost:3000/#/api/verify-email/${verificationString}</p>
             <p>Regards Me</p>
         `,
     });
-} catch (e) {
-  console.log(e);
-  res.sendStatus(500);  
-}
-
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
 
   jwt.sign(
     {

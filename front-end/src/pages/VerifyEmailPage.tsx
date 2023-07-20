@@ -12,9 +12,9 @@ function PleaseVerifyEamilPage() {
   }, [navigate]);
 
   return (
-    <div className="mainContainer">
-      <div>
-        <h1>Thanks for signing up!</h1>
+    <div className="flex items-center justify-center h-screen">
+      <div className="max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold mb-4">Thanks for signing up!</h1>
         <p>
           A verification email has been sent to the email address you provided.
           Please verify your email to unlock more features.
