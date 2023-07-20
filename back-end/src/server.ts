@@ -60,6 +60,37 @@ app.post('/api/projects/:link/comments', async (req, res) => {
   }
 });
 
+app.put('/api/forgot-password/:email',async (req, res) => {
+  const {email} = req.params;
+  const passwordResetCode = uuid();
+   const result = await db
+    .collection('users')
+    .updateOne({ email }, { $set: { passwordResetCode } });
+
+  
+
+  if (result.modifiedCount > 0) {
+    try {
+      await sendEmail({
+        send_to: email,
+        sent_from: process.env.EMAIL_USER,
+        reply_to: email,
+        subject: 'Password Reset',
+        message: `
+              <h3>Hello</h3>
+              <p>To reset your password, click here:</p>
+              <p>http://localhost:3000/#/reset-password/${passwordResetCode}</p>
+              <p>Regards Me</p>
+          `,
+      });
+    } catch (e) {
+      console.log(e);
+      res.sendStatus(500);
+    }
+  }
+  res.sendStatus(200);
+})
+
 app.put('/api/verify-email', async (req, res) => {
   const { verificationString } = req.body;
   const result = await db.collection('users').findOne({
