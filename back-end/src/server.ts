@@ -2,6 +2,7 @@ import express, { Response, Request, Application } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { v4 as uuid } from 'uuid'
+import { ObjectId } from 'mongodb';
 
 import { db, connectToDb } from './db.js';
 import sendEmail from './util/sendEmail.js';
@@ -59,27 +60,30 @@ app.post('/api/projects/:link/comments', async (req, res) => {
   }
 });
 
-//test
-/* app.post("/api/sendemail", async (req, res) => {
-  const { email } = req.body;
+app.put('/api/verify-email', async (req, res) => {
+  const { verificationString } = req.body;
+  const result = await db.collection('users').findOne({
+    verificationString,
+  });
 
-  try {
-    const send_to = email;
-    const sent_from = process.env.EMAIL_USER;
-    const reply_to = email;
-    const subject = "Test";
-    const message = `
-        <h3>Hello</h3>
-        <p>Thank for email</p>
-        <p>Regards...</p>
-    `;
-
-    await sendEmail(subject, message, send_to, sent_from, reply_to);
-    res.status(200).json(`All good`);
-  } catch (error) {
-    res.status(500).json(error.message);
+  if (!result) {
+    res.status(401).json({ message: 'The email verification code is not correct!' })
   }
-}); */
+  const { _id: id, email } = result;
+  console.log(result);
+
+  await db.collection('users').updateOne({ _id: ObjectId(id) }, {
+    $set: { isVerified: true }
+  });
+
+  jwt.sign({ id, email, isVerified: true }, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {
+    if (err) {
+      return res.sendStatus(500)
+    }
+    res.status(200).json({ token })
+  });
+
+})
 
 app.post('/api/register', async (req, res) => {
   const { email, password, first_name, last_name, phone_number } = req.body;
