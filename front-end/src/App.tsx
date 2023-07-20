@@ -9,6 +9,7 @@ import ProjectListPage from './pages/ProjectListPage';
 import ProjectPage from './pages/ProjectPage';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './auth/PrivateRoute';
+import VerifyEmailPage from './pages/VerifyEmailPage';
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignUpPage />} />
+        <Route path="/please-verify" element={<VerifyEmailPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<ProjectListPage />} />
         <Route path="/projects/:projectId" element={<ProjectPage />} />

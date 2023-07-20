@@ -19,6 +19,8 @@ function SignUpPage() {
 
   const navigate = useNavigate();
 
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+
   const onSignUpClicked = async () => {
     const response = await axios.post('/api/register', {
       first_name: firstNameValue,
@@ -29,7 +31,7 @@ function SignUpPage() {
     });
     const { token } = response.data;
     setToken(token);
-    navigate('/');
+    navigate('/projects');
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -155,10 +157,9 @@ function SignUpPage() {
                   id="phone"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Phone Number"
-                  required
                 />
               </div>
-              <div className="flex items-start">
+              {/* <div className="flex items-start">
                 <div className="flex items-center h-5">
                   <input
                     id="terms"
@@ -166,6 +167,8 @@ function SignUpPage() {
                     type="checkbox"
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                     required
+                    checked={isTermsAccepted} // Set the checked state based on isTermsAccepted
+                    onChange={(e) => setIsTermsAccepted(e.target.checked)}
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -182,7 +185,7 @@ function SignUpPage() {
                     </a>
                   </label>
                 </div>
-              </div>
+              </div> */}
               <button
                 disabled={
                   !emailValue ||

@@ -21,7 +21,7 @@ function LoginPage() {
     });
     const { token } = response.data;
     setToken(token);
-    navigate('/');
+    navigate('/projects');
   };
 
   return (
@@ -80,7 +80,7 @@ function LoginPage() {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <div className="flex items-start">
+                {/* <div className="flex items-start">
                   <div className="flex items-center h-5">
                     <input
                       id="remember"
@@ -98,7 +98,7 @@ function LoginPage() {
                       Remember me
                     </label>
                   </div>
-                </div>
+                </div> */}
                 <button
                   type="button"
                   onClick={() => navigate('/forget-password')}
@@ -135,7 +135,7 @@ function LoginPage() {
                 onClick={onLogInClicked}
                 className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Sign in
+                Log in
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?
