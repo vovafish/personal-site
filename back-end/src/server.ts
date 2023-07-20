@@ -69,14 +69,14 @@ app.put('/api/verify-email', async (req, res) => {
   if (!result) {
     res.status(401).json({ message: 'The email verification code is not correct!' })
   }
-  const { _id: id, email } = result;
+  const { _id: id, email, first_name, last_name, phone_number, isAdmin } = result;
   console.log(result);
 
   await db.collection('users').updateOne({ _id: new ObjectId(id) }, {
     $set: { isVerified: true }
   });
 
-  jwt.sign({ id, email, isVerified: true }, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {
+  jwt.sign({ id, email, isVerified: true, first_name, last_name, phone_number, isAdmin: false }, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {
     if (err) {
       return res.sendStatus(500)
     }

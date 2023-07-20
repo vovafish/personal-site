@@ -4,8 +4,7 @@ import NavBar from './NavBar';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import EmailVerificationPage from './pages/EmailVerificationPage';
-import EmailVerificationSuccess from './pages/EmailVerificationSuccess';
-import EmailVerificationFail from './pages/EmailVerificationFail';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Home from './pages/Home';
 import About from './pages/About';
 import ProjectListPage from './pages/ProjectListPage';
@@ -23,6 +22,7 @@ export function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignUpPage />} />
         <Route path="/please-verify" element={<VerifyEmailPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route
           path="/verify-email/:verificationString"
           element={<EmailVerificationPage />}
