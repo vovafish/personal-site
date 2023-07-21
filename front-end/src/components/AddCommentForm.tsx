@@ -16,19 +16,19 @@ function AddCommentForm({ projectLink, onProjectUpdated }: any) {
     setCommentText('');
   };
   return (
-    <div>
-      <h3>Add a comment</h3>
-      <label htmlFor="name">
+    <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-6 mt-4">
+      <h3 className="text-xl font-bold mb-4">Add a comment</h3>
+      <label htmlFor="name" className="block mb-2">
         Name:
         <input
-          // to way binding betweem input & state
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           type="text"
+          className="w-full border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-lg px-3 py-2"
         />
       </label>
-      <label htmlFor="comment">
+      <label htmlFor="comment" className="block mb-2">
         Comment:
         <textarea
           id="comment"
@@ -36,9 +36,14 @@ function AddCommentForm({ projectLink, onProjectUpdated }: any) {
           onChange={(e) => setCommentText(e.target.value)}
           rows={4}
           cols={50}
+          className="w-full border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-lg px-3 py-2"
         />
       </label>
-      <button className="" onClick={addComment} type="submit">
+      <button
+        className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={addComment}
+        type="submit"
+      >
         Add Comment
       </button>
     </div>

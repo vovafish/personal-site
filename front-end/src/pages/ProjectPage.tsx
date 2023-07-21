@@ -42,38 +42,47 @@ function ProjectPage() {
     return <NotFound />;
   }
   return (
-    <main className="flex flex-wrap justify-center pt-40 px-6 gap-4">
-      <div className="p-5">
-        <a href="#">
-          <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {projectFound?.name}
-          </h1>
+    <main className="flex flex-col justify-center items-center p-6 gap-4 pt-20">
+      <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-6">
+        <a href="#" className="text-2xl font-bold text-gray-900">
+          {projectFound?.name}
         </a>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={addUpvote}
           type="button"
         >
           Upvote
         </button>
-        <p>Project has: {projectInfo.upvotes} upvote(s)</p>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        <p className="mt-2 text-sm text-gray-700">
+          {projectInfo.upvotes} upvote(s)
+        </p>
+        <p className="mt-4 text-gray-800 dark:text-gray-300">
           {projectFound?.description}
         </p>
-        {projectFound?.stack.map((item) => (
-          <p key={item}>{item}</p>
-        ))}
+        <div className="mt-2">
+          {projectFound?.stack.map((item) => (
+            <span
+              key={item}
+              className="inline-block bg-gray-200 text-gray-800 px-2 py-1 rounded-lg text-sm mr-2 mb-2"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+        <Link to="/projects" className="mt-4 text-blue-500 hover:text-blue-700">
+          Back
+        </Link>
       </div>
-      <div className="">
-        <Link to="/projects">Back</Link>
-      </div>
+      {/* AddCommentForm component */}
       <AddCommentForm
         projectLink={projectId}
-        onProjectUpdated={(updatedProjcet: any) =>
-          setProjectInfo(updatedProjcet)
+        onProjectUpdated={(updatedProject: any) =>
+          setProjectInfo(updatedProject)
         }
       />
-      <div>
+      <div className="mt-6">
+        {/* CommentsList component */}
         <CommentsList comments={projectInfo?.comments} />
       </div>
     </main>
