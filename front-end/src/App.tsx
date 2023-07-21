@@ -7,6 +7,7 @@ import EmailVerificationPage from './pages/EmailVerificationPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Home from './pages/Home';
 import About from './pages/About';
+import Contacts from './pages/Contacts';
 import ProjectListPage from './pages/ProjectListPage';
 import ProjectPage from './pages/ProjectPage';
 import NotFound from './pages/NotFound';
@@ -28,6 +29,7 @@ export function App() {
           element={<EmailVerificationPage />}
         />
         <Route path="/about" element={<About />} />
+        <Route path="/contacts" element={<Contacts />} />
         <Route path="/projects" element={<ProjectListPage />} />
         <Route path="/projects/:projectId" element={<ProjectPage />} />
         <Route path="*" element={<NotFound />} />
