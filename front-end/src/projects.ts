@@ -36,6 +36,39 @@ const projects = [
     stack: ['HTML5', 'CSS3', 'JavaScript', 'C#'],
     resource: 'https://github.com/vovafish/React_Team',
   },
+  {
+    link: 'game-store',
+    name: 'Control App For Managing Game Store',
+    image: '',
+    description:
+      "The university project is a game store application. It stores data about small shop with second-hand games. I created the application using C#'s OOP to create reusable methods and classes. Also, implement functions to manipulate data e.g. delete, add, update and more.",
+    stack: ['C#'],
+    resource: 'https://github.com/vovafish/game-store',
+  },
+  {
+    link: 'dmu-empire',
+    name: 'DMU Empire; Cars Store',
+    image: '',
+    description: 'Uni project about selling cars',
+    stack: ['ReactJS', 'SASS/SCSS', 'MongoDB', 'NodeJS', 'MERN', 'Express'],
+    resource: 'https://github.com/vovafish/game-store',
+  },
+  {
+    link: 'music-player',
+    name: 'Music Player',
+    image: '',
+    description: 'Uni project 1st year',
+    stack: ['C#', 'ASP.NET', 'CSS'],
+    resource: 'https://github.com/vovafish/music-player',
+  },
+  {
+    link: 'personal-site-v1',
+    name: 'Version 1 of My Personal Site',
+    image: '',
+    description: 'Uni project 1st year',
+    stack: ['JavaScript', 'HTML', 'Stylus'],
+    resource: 'https://github.com/vovafish/vribakov',
+  },
 ];
 
 export default projects;
