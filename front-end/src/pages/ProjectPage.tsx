@@ -42,8 +42,9 @@ function ProjectPage() {
     return <NotFound />;
   }
   return (
-    <main className="flex flex-col justify-center items-center p-6 gap-4 pt-20">
-      <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-6">
+    <main className="flex flex-col lg:flex-row justify-center items-start p-6 gap-4 pt-20">
+      {/* Left Column - Main Content */}
+      <div className="w-full lg:w-2/3 bg-white rounded-lg shadow-lg p-6">
         <a href="#" className="text-2xl font-bold text-gray-900">
           {projectFound?.name}
         </a>
@@ -74,16 +75,20 @@ function ProjectPage() {
           Back
         </Link>
       </div>
-      {/* AddCommentForm component */}
-      <AddCommentForm
-        projectLink={projectId}
-        onProjectUpdated={(updatedProject: any) =>
-          setProjectInfo(updatedProject)
-        }
-      />
-      <div className="mt-6">
-        {/* CommentsList component */}
-        <CommentsList comments={projectInfo?.comments} />
+
+      {/* Right Column - Comments Section */}
+      <div className="w-full lg:w-1/3">
+        {/* AddCommentForm component */}
+        <AddCommentForm
+          projectLink={projectId}
+          onProjectUpdated={(updatedProject: any) =>
+            setProjectInfo(updatedProject)
+          }
+        />
+        <div className="mt-6">
+          {/* CommentsList component */}
+          <CommentsList comments={projectInfo?.comments} />
+        </div>
       </div>
     </main>
   );

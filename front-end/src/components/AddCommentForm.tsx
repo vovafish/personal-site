@@ -16,7 +16,7 @@ function AddCommentForm({ projectLink, onProjectUpdated }: any) {
     setCommentText('');
   };
   return (
-    <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-6 mt-4">
+    <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-6">
       <h3 className="text-xl font-bold mb-4">Add a comment</h3>
       <label htmlFor="name" className="block mb-2">
         Name:
