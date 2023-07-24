@@ -13,6 +13,7 @@ import ProjectPage from './pages/ProjectPage';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './auth/PrivateRoute';
 import VerifyEmailPage from './pages/VerifyEmailPage';
+import PasswordResetPage from './pages/PasswordResetPage';
 
 export function App() {
   return (
@@ -24,6 +25,10 @@ export function App() {
         <Route path="/register" element={<SignUpPage />} />
         <Route path="/please-verify" element={<VerifyEmailPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route
+          path="/reset-password/:passwordResetCode"
+          element={<PasswordResetPage />}
+        />
         <Route
           path="/verify-email/:verificationString"
           element={<EmailVerificationPage />}
