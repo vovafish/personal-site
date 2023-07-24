@@ -60,14 +60,14 @@ app.post('/api/projects/:link/comments', async (req, res) => {
   }
 });
 
-app.put('/api/forgot-password/:email',async (req, res) => {
-  const {email} = req.params;
+app.put('/api/forgot-password/:email', async (req, res) => {
+  const { email } = req.params;
   const passwordResetCode = uuid();
-   const result = await db
+  const result = await db
     .collection('users')
     .updateOne({ email }, { $set: { passwordResetCode } });
 
-  
+
 
   if (result.modifiedCount > 0) {
     try {
@@ -227,6 +227,29 @@ app.post('/api/login', async (req, res) => {
   } else {
     res.sendStatus(401);
   }
+});
+
+app.put('/api/users/:passwordResetCode/reset-password', async (req, res) => {
+  const { passwordResetCode } = req.params;
+  const { newPassword } = req.body;
+
+  // Hash the new password using the bcrypt library
+  const newPasswordHash = await bcrypt.hash(newPassword, 10);
+
+  // Update the user's document in the database to include the new password hash and remove the password reset code
+  const result = await db.collection('users').findOneAndUpdate(
+    { passwordResetCode },
+    {
+      $set: { passwordHash: newPasswordHash },
+      $unset: { passwordResetCode: '' },
+    }
+  );
+
+  // If no document was modified, return a 404 error
+  if (result.lastErrorObject.n === 0) return res.sendStatus(404).json(`Error nothing to change`);
+
+  // Return a success response
+  res.sendStatus(200);
 });
 
 connectToDb(() => {
