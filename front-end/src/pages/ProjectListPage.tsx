@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import projects from '../projects';
 import ProjectsList from '../components/ProjectsList';
 
 function ProjectsListPage() {

@@ -11,7 +11,7 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "dev": "nodemon -r dotenv/config dist/server.js",
+    "dev": "nodemon -r dotenv/config output/server.js",
     "build": "tsc -watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

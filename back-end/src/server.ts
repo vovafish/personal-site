@@ -3,13 +3,23 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { v4 as uuid } from 'uuid'
 import { ObjectId } from 'mongodb';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { db, connectToDb } from './db.js';
 import sendEmail from './util/sendEmail.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename)
+
 const app: Application = express();
 // middleware
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../dist')));
+
+app.get(/^(?!\/api).+/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 app.get('/api/projects/:link', async (req, res) => {
   const { link } = req.params;
@@ -261,9 +271,11 @@ app.put('/api/users/:passwordResetCode/reset-password', async (req, res) => {
   res.sendStatus(200);
 });
 
+const PORT = process.env.PORT || 8000;
+
 connectToDb(() => {
   console.log('Connected to the DB');
-  app.listen(8000, () => {
-    console.log(`Listening on port 8000`);
+  app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
   });
 });
