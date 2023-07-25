@@ -7,21 +7,30 @@ import axios from 'axios';
 import useToken from '../auth/useToken';
 
 function LoginPage() {
-  const [token, setToken] = useToken();
+  const [, setToken] = useToken();
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
-  const [error, serError] = useState('');
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
 
   const onLogInClicked = async () => {
-    const response = await axios.post('/api/login', {
-      email: emailValue,
-      password: passwordValue,
-    });
-    const { token } = response.data;
-    setToken(token);
-    navigate('/projects');
+    if (!emailValue || !passwordValue) {
+      setError('Please fill in all fields.');
+      return;
+    }
+
+    try {
+      const response = await axios.post('/api/login', {
+        email: emailValue,
+        password: passwordValue,
+      });
+      const { token } = response.data;
+      setToken(token);
+      navigate('/projects');
+    } catch (e) {
+      setError('Invalid email or password. Please try again.');
+    }
   };
 
   return (
@@ -79,25 +88,25 @@ function LoginPage() {
               />
             </div>
             <div className="flex items-center justify-between">
-              {/* <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="remember"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-                </div> */}
+              <div className="flex items-start">
+                <div className="flex items-center h-5">
+                  <input
+                    id="remember"
+                    aria-describedby="remember"
+                    type="checkbox"
+                    className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    required
+                  />
+                </div>
+                <div className="ml-3 text-sm">
+                  <label
+                    htmlFor="remember"
+                    className="text-gray-500 dark:text-gray-300"
+                  >
+                    Remember me
+                  </label>
+                </div>
+              </div>
               <button
                 type="button"
                 onClick={() => navigate('/forgot-password')}
@@ -123,13 +132,15 @@ function LoginPage() {
                 <span className="sr-only">Info</span>
                 <div>
                   <span className="font-medium">Something wrong :(</span>
-                  {error}
+                  <ul className="list-disc pl-5">
+                    <li>{error}</li>
+                  </ul>
                 </div>
               </div>
             )}
 
             <button
-              disabled={!emailValue || !passwordValue}
+              // disabled={!emailValue || !passwordValue}
               type="submit"
               onClick={onLogInClicked}
               className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

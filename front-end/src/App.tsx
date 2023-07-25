@@ -11,7 +11,7 @@ import Contacts from './pages/Contacts';
 import ProjectListPage from './pages/ProjectListPage';
 import ProjectPage from './pages/ProjectPage';
 import NotFound from './pages/NotFound';
-import PrivateRoute from './auth/PrivateRoute';
+// import PrivateRoute from './auth/PrivateRoute';
 import VerifyEmailPage from './pages/VerifyEmailPage';
 import PasswordResetPage from './pages/PasswordResetPage';
 

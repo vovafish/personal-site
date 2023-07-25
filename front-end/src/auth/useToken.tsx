@@ -1,12 +1,16 @@
 import { useState } from 'react';
 
-function useToken() {
-  const [token, setTokenInternal] = useState(() => {
+function useToken(): [string | null, (newToken: string | null) => void] {
+  const [token, setTokenInternal] = useState<string | null>(() => {
     return localStorage.getItem('token');
   });
 
-  const setToken = (newToken: any) => {
-    localStorage.setItem('token', newToken);
+  const setToken = (newToken: string | null) => {
+    if (newToken) {
+      localStorage.setItem('token', newToken);
+    } else {
+      localStorage.removeItem('token');
+    }
     setTokenInternal(newToken);
   };
 

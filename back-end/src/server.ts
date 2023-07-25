@@ -229,6 +229,15 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+app.get('/api/projects', async (req, res) => {
+  const projects = await db.collection('projects').find({}).toArray();
+  if (projects) {
+    res.json(projects);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 app.put('/api/users/:passwordResetCode/reset-password', async (req, res) => {
   const { passwordResetCode } = req.params;
   const { newPassword } = req.body;

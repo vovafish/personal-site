@@ -19,6 +19,7 @@ function EmailVerificationPage() {
           verificationString,
         });
         const { token } = response.data;
+        setToken(token);
         setIsSuccess(true);
         setIsLoading(false);
       } catch (e) {

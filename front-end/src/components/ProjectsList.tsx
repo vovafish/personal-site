@@ -2,11 +2,20 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+interface Comment {
+  postedBy: string;
+  text: string;
+}
 interface Project {
   link: string;
   name: string;
   description: string;
   stack: string[];
+  resource: string;
+  image?: string;
+  upvotes?: number;
+  comments?: Comment[];
+  view?: string;
 }
 
 interface ProjectsListProps {

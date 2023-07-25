@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link, useNavigate } from 'react-router-dom';
 import useUser from './auth/useUser';
-import useToken from './auth/useToken';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -10,7 +9,6 @@ function NavBar() {
     localStorage.removeItem('token');
     navigate('/login');
   };
-  const token = useToken();
   const user = useUser();
 
   return (

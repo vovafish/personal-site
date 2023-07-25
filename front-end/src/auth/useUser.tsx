@@ -2,25 +2,25 @@ import { useState, useEffect } from 'react';
 import useToken from './useToken';
 
 function useUser() {
-  const [token] = useToken();
+  const [storedToken] = useToken();
 
-  const getPayloadFromToken = (token) => {
+  const getPayloadFromToken = (token: string) => {
     const encodedPayload = token.split('.')[1];
     return JSON.parse(atob(encodedPayload));
   };
 
   const [user, setUser] = useState(() => {
-    if (!token) return null;
-    return getPayloadFromToken(token);
+    if (!storedToken) return null;
+    return getPayloadFromToken(storedToken);
   });
 
   useEffect(() => {
-    if (!token) {
+    if (!storedToken) {
       setUser(null);
     } else {
-      setUser(getPayloadFromToken(token));
+      setUser(getPayloadFromToken(storedToken));
     }
-  }, [token]);
+  }, [storedToken]);
 
   return user;
 }

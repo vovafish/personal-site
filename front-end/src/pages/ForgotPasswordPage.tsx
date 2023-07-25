@@ -15,8 +15,13 @@ function ForgotPasswordPage() {
       setTimeout(() => {
         navigate('/login');
       }, 3000);
-    } catch (e) {
-      setErrorMsg(e.message);
+    } catch (error) {
+      // Specify the type of the caught error
+      if (error instanceof Error) {
+        setErrorMsg(error.message);
+      } else {
+        setErrorMsg('An error occurred.');
+      }
     }
   };
   return success ? (
