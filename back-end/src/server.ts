@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid'
 import { ObjectId } from 'mongodb';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import 'dotenv/config';
 
 import { db, connectToDb } from './db.js';
 import sendEmail from './util/sendEmail.js';

@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 let db;
 
 async function connectToDb(callback) {
-    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    const client = new MongoClient(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@personal-cluster.rkcohc2.mongodb.net/?retryWrites=true&w=majority`);
     await client.connect();
     db = client.db('my-presonal-projects'); // reference to the db
     callback();
