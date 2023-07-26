@@ -11,7 +11,7 @@ import { db, connectToDb } from './db.js';
 import sendEmail from './util/sendEmail.js';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename)
+const __dirname = path.dirname(__filename);
 
 const app: Application = express();
 // middleware
