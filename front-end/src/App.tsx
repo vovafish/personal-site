@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound';
 // import PrivateRoute from './auth/PrivateRoute';
 import VerifyEmailPage from './pages/VerifyEmailPage';
 import PasswordResetPage from './pages/PasswordResetPage';
+import ContactForm from './pages/AskMe';
 
 export function App() {
   return (
@@ -35,6 +36,7 @@ export function App() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
+        <Route path="/askme" element={<ContactForm />} />
         <Route path="/projects" element={<ProjectListPage />} />
         <Route path="/projects/:projectId" element={<ProjectPage />} />
         <Route path="*" element={<NotFound />} />
