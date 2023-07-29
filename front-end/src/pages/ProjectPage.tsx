@@ -2,6 +2,9 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import NotFound from './NotFound';
 import CommentsList from '../components/CommentsList';
@@ -45,23 +48,65 @@ function ProjectPage() {
   if (!projectInfo) {
     return <NotFound />;
   }
+
+  // Configuring the carousel settings
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true, // Show navigation arrows
+  };
+
   return (
     <main className="flex flex-col lg:flex-row justify-center items-start p-6 gap-4 pt-20">
       {/* Left Column - Main Content */}
-      <div className="w-full lg:w-2/3 bg-white rounded-lg shadow-lg p-6">
-        <a href="#" className="text-2xl font-bold text-gray-900">
-          {projectInfo.name}
-        </a>
-        <button
-          className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={addUpvote}
-          type="button"
-        >
-          Upvote
-        </button>
+      <div className="w-full lg:w-2/3 bg-white rounded-lg shadow-lg p-10">
+        <div className="mb-8">
+          <a href="#" className="text-2xl font-bold text-gray-900">
+            {projectInfo.name}
+          </a>
+        </div>
+        <div className="mt-2">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={addUpvote}
+            type="button"
+          >
+            Upvote
+          </button>
+        </div>
         <p className="mt-2 text-sm text-gray-700">
-          {projectInfo?.upvotes} upvote(s)
+          {projectInfo?.upvotes
+            ? `${projectInfo?.upvotes} upvote(s)`
+            : '0 upvotes'}
         </p>
+        {/* Add the carousel here */}
+        <div className="pt-6 pb-6">
+          <Slider {...carouselSettings}>
+            {/*  {projectInfo.images.map((image) => (
+            <div key={image.id}>
+              <img src={image.url} alt={image.alt} />
+            </div>
+          ))} */}
+            <img
+              className="rounded-t-lg w-full h-48"
+              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+              alt=""
+            />
+            <img
+              className="rounded-t-lg w-full h-48"
+              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+              alt=""
+            />
+            <img
+              className="rounded-t-lg w-full h-48"
+              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+              alt=""
+            />
+          </Slider>
+        </div>
         <p className="mt-4 text-gray-800 dark:text-gray-300">
           {projectInfo.description}
         </p>
@@ -75,7 +120,10 @@ function ProjectPage() {
             </span>
           ))}
         </div>
-        <Link to="/projects" className="mt-4 text-blue-500 hover:text-blue-700">
+        <Link
+          to="/projects"
+          className="mt-4 ml-10 text-blue-500 hover:text-blue-700"
+        >
           Back
         </Link>
       </div>

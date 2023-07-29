@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.test {
-    background: blue;
-}
+/* Change the color of the left arrow */
+.slick-prev:before {
+    color: black; /* Change this to your desired color */
+  }
+  
+  /* Change the color of the right arrow */
+  .slick-next:before {
+    color: black; /* Change this to your desired color */
+  }
