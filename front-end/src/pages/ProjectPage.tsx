@@ -91,21 +91,6 @@ function ProjectPage() {
                 <img src={image} alt={image} className="w-320 h-240" />
               </div>
             ))}
-            {/*  <img
-              className="rounded-t-lg w-full h-48"
-              src="https://1drv.ms/i/c/6adeaf52e605ec8b/EYvsBeZSr94ggGrzAQAAAAABza6JbbniHUKE1NfobWsy1w?e=f1aJQg"
-              alt=""
-            />
-            <img
-              className="rounded-t-lg w-full h-48"
-              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
-              alt=""
-            />
-            <img
-              className="rounded-t-lg w-full h-48"
-              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
-              alt=""
-            /> */}
           </Slider>
         </div>
         <p className="mt-4 text-gray-800 dark:text-gray-300">

@@ -7,10 +7,22 @@ function AddCommentForm({ projectLink, onProjectUpdated, comments }: any) {
   const user = useUser();
   const [commentText, setCommentText] = useState('');
 
+  const currentDate = new Date();
+
+  // Format the date as "Day Month, HH:mm"
+  const formattedDate = currentDate.toLocaleString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  });
+
   const addComment = async () => {
     const response = await axios.post(`/api/projects/${projectLink}/comments`, {
       postedBy: user.first_name,
       text: commentText,
+      date: formattedDate,
     });
     const updatedProject = response.data;
     onProjectUpdated(updatedProject);
