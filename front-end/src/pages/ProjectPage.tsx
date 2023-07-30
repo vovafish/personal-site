@@ -17,6 +17,7 @@ function ProjectPage() {
     comments: [],
     description: '',
     stack: [],
+    image: [],
   });
 
   const { projectId } = useParams();
@@ -85,14 +86,14 @@ function ProjectPage() {
         {/* Add the carousel here */}
         <div className="pt-6 pb-6">
           <Slider {...carouselSettings}>
-            {/*  {projectInfo.images.map((image) => (
-            <div key={image.id}>
-              <img src={image.url} alt={image.alt} />
-            </div>
-          ))} */}
-            <img
+            {projectInfo.image.map((image) => (
+              <div key={image}>
+                <img src={image} alt={image} className="w-320 h-240" />
+              </div>
+            ))}
+            {/*  <img
               className="rounded-t-lg w-full h-48"
-              src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+              src="https://1drv.ms/i/c/6adeaf52e605ec8b/EYvsBeZSr94ggGrzAQAAAAABza6JbbniHUKE1NfobWsy1w?e=f1aJQg"
               alt=""
             />
             <img
@@ -104,7 +105,7 @@ function ProjectPage() {
               className="rounded-t-lg w-full h-48"
               src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
               alt=""
-            />
+            /> */}
           </Slider>
         </div>
         <p className="mt-4 text-gray-800 dark:text-gray-300">
@@ -132,6 +133,7 @@ function ProjectPage() {
       <div className="w-full lg:w-1/3">
         {/* AddCommentForm component */}
         <AddCommentForm
+          comments={projectInfo.comments}
           projectLink={projectId}
           onProjectUpdated={(
             updatedProject: SetStateAction<{

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import useUser from '../auth/useUser';
 
-function AddCommentForm({ projectLink, onProjectUpdated }: any) {
+function AddCommentForm({ projectLink, onProjectUpdated, comments }: any) {
   const user = useUser();
   const [commentText, setCommentText] = useState('');
 
@@ -16,11 +16,14 @@ function AddCommentForm({ projectLink, onProjectUpdated }: any) {
     onProjectUpdated(updatedProject);
     setCommentText('');
   };
+
   return (
     <main className="w-full max-w-lg bg-white rounded-lg shadow-lg p-6">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-          Discussion (20)
+          {typeof comments !== 'undefined'
+            ? `Discussion (${comments.length})`
+            : 'Discussion 0'}
         </h2>
       </div>
       <form className="mb-6">
@@ -46,37 +49,6 @@ function AddCommentForm({ projectLink, onProjectUpdated }: any) {
           Post comment
         </button>
       </form>
-      {/* <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-6">
-      <h3 className="text-xl font-bold mb-4">Add a comment</h3>
-      <label htmlFor="name" className="block mb-2">
-        Name:
-        <input
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          className="w-full border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-lg px-3 py-2"
-        />
-      </label>
-      <label htmlFor="comment" className="block mb-2">
-        Comment:
-        <textarea
-          id="comment"
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-          rows={4}
-          cols={50}
-          className="w-full border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 rounded-lg px-3 py-2"
-        />
-      </label>
-      <button
-        className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={addComment}
-        type="submit"
-      >
-        Add Comment
-      </button>
-    </div> */}
     </main>
   );
 }
