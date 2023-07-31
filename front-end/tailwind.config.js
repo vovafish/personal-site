@@ -4,7 +4,13 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        caveat: ['Caveat', 'cursive'],
+        inconsolata: ['Inconsolata', 'monospace'],
+        tektur: ['Tektur', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

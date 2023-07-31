@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: 'Inconsolata', sans-serif;
+}
 /* Change the color of the left arrow */
 .slick-prev:before {
     color: black; /* Change this to your desired color */
