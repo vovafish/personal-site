@@ -87,8 +87,8 @@ function ProjectPage() {
         <div className="pt-6 pb-6">
           <Slider {...carouselSettings}>
             {projectInfo.image.map((image) => (
-              <div key={image}>
-                <img src={image} alt={image} className="w-320 h-240" />
+              <div key={image + Math.random()}>
+                <img src={image} alt={image} className="w-full h-full" />
               </div>
             ))}
           </Slider>

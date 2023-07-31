@@ -53,12 +53,12 @@ app.put('/api/projects/:link/upvote', async (req, res) => {
 
 app.post('/api/projects/:link/comments', async (req, res) => {
   const { link } = req.params;
-  const { postedBy, text } = req.body;
+  const { postedBy, text, date } = req.body;
 
   await db.collection('projects').updateOne(
     { link },
     {
-      $push: { comments: { postedBy, text } },
+      $push: { comments: { postedBy, text, date } },
     }
   );
 
