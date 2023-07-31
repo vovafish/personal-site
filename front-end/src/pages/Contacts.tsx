@@ -1,3 +1,4 @@
+import React from 'react';
 import MainBackground from '../components/MainBackground';
 
 function Contacts() {
@@ -10,12 +11,10 @@ function Contacts() {
             <p className="mt-4 text-gray-800">
               You can get in touch with me through the following channels:
             </p>
-
             <div className="mt-4">
               <h2 className="text-xl font-semibold">Email:</h2>
               <p className="text-gray-800">vladimirrybakov123@gmail.com</p>
             </div>
-
             <div className="mt-4">
               <h2 className="text-xl font-semibold">LinkedIn:</h2>
               <p className="text-blue-500 hover:underline">
@@ -28,7 +27,6 @@ function Contacts() {
                 </a>
               </p>
             </div>
-
             <div className="mt-4">
               <h2 className="text-xl font-semibold">GitHub:</h2>
               <p className="text-blue-500 hover:underline">
@@ -41,16 +39,39 @@ function Contacts() {
                 </a>
               </p>
             </div>
-
             <div className="mt-4">
-              <h2 className="text-xl font-semibold">Personal Website:</h2>
+              <h2 className="text-xl font-semibold">Youtube:</h2>
               <p className="text-blue-500 hover:underline">
                 <a
-                  href="https://vribakov.site"
+                  href="https://www.youtube.com/channel/UCvymxnNes4am2pyjbXgmgog"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  vribakov.site
+                  www.youtube.com/channel/UCvymxnNes4am2pyjbXgmgog
+                </a>
+              </p>
+            </div>
+            <div className="mt-4">
+              <h2 className="text-xl font-semibold">Facebook:</h2>
+              <p className="text-blue-500 hover:underline">
+                <a
+                  href="https://www.facebook.com/profile.php?id=100009911596288"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  https://www.facebook.com/profile.php?id=100009911596288
+                </a>
+              </p>
+            </div>
+            <div className="mt-4">
+              <h2 className="text-xl font-semibold">VKontakte:</h2>
+              <p className="text-blue-500 hover:underline">
+                <a
+                  href="https://www.youtube.com/channel/UCvymxnNes4am2pyjbXgmgog"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ...
                 </a>
               </p>
             </div>
