@@ -14,6 +14,8 @@ import NotFound from './pages/NotFound';
 // import PrivateRoute from './auth/PrivateRoute';
 import VerifyEmailPage from './pages/VerifyEmailPage';
 import PasswordResetPage from './pages/PasswordResetPage';
+import AskmeFail from './pages/AskmeFail';
+import AskmeSuccess from './pages/AskmeSuccess';
 import ContactForm from './pages/AskMe';
 
 export function App() {
@@ -37,6 +39,8 @@ export function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/askme" element={<ContactForm />} />
+        <Route path="/askme-fail" element={<AskmeFail />} />
+        <Route path="/askme-success" element={<AskmeSuccess />} />
         <Route path="/projects" element={<ProjectListPage />} />
         <Route path="/projects/:projectId" element={<ProjectPage />} />
         <Route path="*" element={<NotFound />} />
