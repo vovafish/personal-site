@@ -1,9 +1,15 @@
-import React from 'react'
+import { ReactNode } from 'react';
 
-function MainBackground() {
-  return (
-    <div>MainBackground</div>
-  )
+interface MainBackgroundProps {
+  children: ReactNode;
 }
 
-export default MainBackground
+function MainBackground({ children }: MainBackgroundProps) {
+  return (
+    <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
+      {children}
+    </div>
+  );
+}
+
+export default MainBackground;

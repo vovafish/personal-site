@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import NotFound from './NotFound';
 import CommentsList from '../components/CommentsList';
 import AddCommentForm from '../components/AddCommentForm';
+import MainBackground from '../components/MainBackground';
 
 function ProjectPage() {
   const [projectInfo, setProjectInfo] = useState({
@@ -61,81 +62,83 @@ function ProjectPage() {
   };
 
   return (
-    <main className="flex flex-col lg:flex-row justify-center items-start p-6 gap-4 pt-20">
-      {/* Left Column - Main Content */}
-      <div className="w-full lg:w-2/3 bg-white rounded-lg shadow-lg p-10">
-        <div className="mb-8">
-          <a href="#" className="text-2xl font-bold text-gray-900">
-            {projectInfo.name}
-          </a>
-        </div>
-        <div className="mt-2">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={addUpvote}
-            type="button"
-          >
-            Upvote
-          </button>
-        </div>
-        <p className="mt-2 text-sm text-gray-700">
-          {projectInfo?.upvotes
-            ? `${projectInfo?.upvotes} upvote(s)`
-            : '0 upvotes'}
-        </p>
-        {/* Add the carousel here */}
-        <div className="pt-6 pb-6">
-          <Slider {...carouselSettings}>
-            {projectInfo.image.map((image) => (
-              <div key={image + Math.random()}>
-                <img src={image} alt={image} className="w-full h-full" />
-              </div>
-            ))}
-          </Slider>
-        </div>
-        <p className="mt-4 text-gray-800 dark:text-gray-300">
-          {projectInfo.description}
-        </p>
-        <div className="mt-2">
-          {projectInfo?.stack.map((item) => (
-            <span
-              key={item}
-              className="inline-block bg-gray-200 text-gray-800 px-2 py-1 rounded-lg text-sm mr-2 mb-2"
+    <MainBackground>
+      <main className="flex flex-col lg:flex-row justify-center items-start p-6 gap-4 pt-20">
+        {/* Left Column - Main Content */}
+        <div className="w-full lg:w-2/3 bg-white rounded-lg shadow-lg p-10">
+          <div className="mb-8">
+            <a href="#" className="text-2xl font-bold text-gray-900">
+              {projectInfo.name}
+            </a>
+          </div>
+          <div className="mt-2">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={addUpvote}
+              type="button"
             >
-              {item}
-            </span>
-          ))}
+              Upvote
+            </button>
+          </div>
+          <p className="mt-2 text-sm text-gray-700">
+            {projectInfo?.upvotes
+              ? `${projectInfo?.upvotes} upvote(s)`
+              : '0 upvotes'}
+          </p>
+          {/* Add the carousel here */}
+          <div className="pt-6 pb-6">
+            <Slider {...carouselSettings}>
+              {projectInfo.image.map((image) => (
+                <div key={image + Math.random()}>
+                  <img src={image} alt={image} className="w-full h-full" />
+                </div>
+              ))}
+            </Slider>
+          </div>
+          <p className="mt-4 text-gray-800 dark:text-gray-300">
+            {projectInfo.description}
+          </p>
+          <div className="mt-2">
+            {projectInfo?.stack.map((item) => (
+              <span
+                key={item}
+                className="inline-block bg-gray-200 text-gray-800 px-2 py-1 rounded-lg text-sm mr-2 mb-2"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <Link
+            to="/projects"
+            className="mt-4 ml-10 text-blue-500 hover:text-blue-700"
+          >
+            Back
+          </Link>
         </div>
-        <Link
-          to="/projects"
-          className="mt-4 ml-10 text-blue-500 hover:text-blue-700"
-        >
-          Back
-        </Link>
-      </div>
 
-      {/* Right Column - Comments Section */}
-      <div className="w-full lg:w-1/3">
-        {/* AddCommentForm component */}
-        <AddCommentForm
-          comments={projectInfo.comments}
-          projectLink={projectId}
-          onProjectUpdated={(
-            updatedProject: SetStateAction<{
-              name: string;
-              upvotes: number;
-              comments: never[];
-              description: string;
-              stack: never[];
-            }>
-          ) => setProjectInfo(updatedProject)}
-        />
-        <div className="mt-6">
-          {/* CommentsList component */}
-          <CommentsList comments={projectInfo?.comments} />
+        {/* Right Column - Comments Section */}
+        <div className="w-full lg:w-1/3">
+          {/* AddCommentForm component */}
+          <AddCommentForm
+            comments={projectInfo.comments}
+            projectLink={projectId}
+            onProjectUpdated={(
+              updatedProject: SetStateAction<{
+                name: string;
+                upvotes: number;
+                comments: never[];
+                description: string;
+                stack: never[];
+              }>
+            ) => setProjectInfo(updatedProject)}
+          />
+          <div className="mt-6">
+            {/* CommentsList component */}
+            <CommentsList comments={projectInfo?.comments} />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </MainBackground>
   );
 }
 
