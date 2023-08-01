@@ -59,7 +59,7 @@ function Contacts() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  https://www.facebook.com/profile.php?id=100009911596288
+                  www.facebook.com/profile.php?id=100009911596288
                 </a>
               </p>
             </div>

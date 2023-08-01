@@ -37,7 +37,11 @@ function CommentsList({ comments }: { comments: Comments[] }) {
       </article>
     );
   }
-  return <p className="text-gray-500 dark:text-gray-400">No comments yet :(</p>;
+  return (
+    <p className="text-gray-500 dark:text-gray-400 text-lg">
+      No comments yet :(
+    </p>
+  );
 }
 
 export default CommentsList;

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import useToken from '../auth/useToken';
+import MainBackground from '../components/MainBackground';
 
 function LoginPage() {
   const [, setToken] = useToken();
@@ -34,7 +35,7 @@ function LoginPage() {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
+    <MainBackground>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -142,7 +143,7 @@ function LoginPage() {
               <button
                 type="button"
                 onClick={() => navigate('/register')}
-                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                className="font-medium text-blue-600 hover:underline dark:text-blue-500 pl-3"
               >
                 Sign up
               </button>
@@ -150,7 +151,7 @@ function LoginPage() {
           </div>
         </div>
       </div>
-    </section>
+    </MainBackground>
   );
 }
 

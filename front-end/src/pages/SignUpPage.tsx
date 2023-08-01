@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import useToken from '../auth/useToken';
+import MainBackground from '../components/MainBackground';
 
 function SignUpPage() {
   const [, setToken] = useToken();
@@ -56,8 +57,8 @@ function SignUpPage() {
     }
   };
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <MainBackground>
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:pt-20 lg:pb-5">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -183,12 +184,12 @@ function SignUpPage() {
                   className="font-light text-gray-500 dark:text-gray-300"
                 >
                   I accept the
-                  <a
-                    className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                    href="#"
+                  <Link
+                    className="font-medium text-blue-600 hover:underline dark:text-blue-500 pl-2"
+                    to="/policy"
                   >
                     Terms and Conditions
-                  </a>
+                  </Link>
                 </label>
               </div>
             </div>
@@ -227,7 +228,7 @@ function SignUpPage() {
               <button
                 onClick={() => navigate('/login')}
                 type="button"
-                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                className="font-medium text-blue-600 hover:underline dark:text-blue-500 pl-3"
               >
                 Login here
               </button>
@@ -235,7 +236,7 @@ function SignUpPage() {
           </div>
         </div>
       </div>
-    </section>
+    </MainBackground>
   );
 }
 

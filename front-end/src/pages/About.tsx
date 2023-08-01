@@ -1,5 +1,7 @@
 import React from 'react';
 
+import MainBackground from '../components/MainBackground';
+
 function About() {
   const frontEndDependencies = [
     'react',
@@ -37,54 +39,56 @@ function About() {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 min-h-screen flex items-center justify-center">
-      <div className="max-w-4xl mx-auto px-6 bg-white rounded-lg shadow-lg grid gap-4 grid-cols-2">
-        <div className="col-span-1 flex flex-col py-8 pr-5">
-          <h1 className="text-4xl font-bold mb-6 text-center text-black">
-            Front-end
-          </h1>
-          <div className="pt-8 h-60">
-            <h2 className="text-2xl font-bold mb-4">
-              Technologies and Libraries
-            </h2>
+    <MainBackground>
+      <div className="min-h-screen flex items-center justify-center pt-20">
+        <div className="max-w-4xl mx-auto px-6 bg-white rounded-lg shadow-lg grid gap-4 grid-cols-2">
+          <div className="col-span-1 flex flex-col py-8 pr-5">
+            <h1 className="text-4xl font-bold mb-6 text-center text-black">
+              Front-end
+            </h1>
+            <div className="pt-8 h-60">
+              <h2 className="text-2xl font-bold mb-4">
+                Technologies and Libraries
+              </h2>
+              <ul className="pl-6">
+                {frontEndDependencies.map((dependency) => (
+                  <li key={dependency}>{dependency}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="h-8" /> {/* Added div with fixed height */}
+            <h2 className="text-2xl font-bold mb-4">Key Aspects</h2>
             <ul className="pl-6">
-              {frontEndDependencies.map((dependency) => (
-                <li key={dependency}>{dependency}</li>
+              {frontEndKeyAspects.map((aspect) => (
+                <li key={aspect}>{aspect}</li>
               ))}
             </ul>
           </div>
-          <div className="h-8" /> {/* Added div with fixed height */}
-          <h2 className="text-2xl font-bold mb-4">Key Aspects</h2>
-          <ul className="pl-6">
-            {frontEndKeyAspects.map((aspect) => (
-              <li key={aspect}>{aspect}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="col-span-1 flex flex-col py-8">
-          <h1 className="text-4xl font-bold mb-6 text-center text-black">
-            Back-end
-          </h1>
-          <div className="pt-8 h-60">
-            <h2 className="text-2xl font-bold mb-4">
-              Technologies and Libraries
-            </h2>
+          <div className="col-span-1 flex flex-col py-8">
+            <h1 className="text-4xl font-bold mb-6 text-center text-black">
+              Back-end
+            </h1>
+            <div className="pt-8 h-60">
+              <h2 className="text-2xl font-bold mb-4">
+                Technologies and Libraries
+              </h2>
+              <ul className="pl-6">
+                {backEndDependencies.map((dependency) => (
+                  <li key={dependency}>{dependency}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="h-8" /> {/* Added div with fixed height */}
+            <h2 className="text-2xl font-bold mb-4">Key Aspects</h2>
             <ul className="pl-6">
-              {backEndDependencies.map((dependency) => (
-                <li key={dependency}>{dependency}</li>
+              {backEndKeyAspects.map((aspect) => (
+                <li key={aspect}>{aspect}</li>
               ))}
             </ul>
           </div>
-          <div className="h-8" /> {/* Added div with fixed height */}
-          <h2 className="text-2xl font-bold mb-4">Key Aspects</h2>
-          <ul className="pl-6">
-            {backEndKeyAspects.map((aspect) => (
-              <li key={aspect}>{aspect}</li>
-            ))}
-          </ul>
         </div>
       </div>
-    </div>
+    </MainBackground>
   );
 }
 

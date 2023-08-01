@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import MainBackground from '../components/MainBackground';
+
 function ForgotPasswordPage() {
   const [emailValue, setEmailValue] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -25,34 +27,38 @@ function ForgotPasswordPage() {
     }
   };
   return success ? (
-    <div className="flex items-center justify-center h-screen">
-      <div className="max-w-md p-8 bg-white rounded-lg shadow-lg text-center">
-        <h1 className="text-2xl font-bold mb-4">Success!</h1>
-        <p>Check your email for a reset link.</p>
+    <MainBackground>
+      <div className="flex items-center justify-center h-screen">
+        <div className="max-w-md p-8 bg-white rounded-lg shadow-lg text-center">
+          <h1 className="text-2xl font-bold mb-4">Success!</h1>
+          <p>Check your email for a reset link.</p>
+        </div>
       </div>
-    </div>
+    </MainBackground>
   ) : (
-    <div className="flex items-center justify-center h-screen">
-      <div className="max-w-md p-8 bg-white rounded-lg shadow-lg text-center">
-        <h1 className="text-2xl font-bold mb-4">Forgot Password!</h1>
-        <p>Enter your email and you will receive a reset link</p>
-        {errorMsg && <div className="text-red-500 mb-4">{errorMsg}</div>}
-        <input
-          value={emailValue}
-          onChange={(e) => setEmailValue(e.target.value)}
-          placeholder="someone@gmail.com"
-          className="mt-4 p-2 border rounded-md"
-        />
-        <button
-          type="button"
-          disabled={!emailValue}
-          onClick={onSubmitClicked}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm disabled:opacity-50"
-        >
-          Send Reset Link
-        </button>
+    <MainBackground>
+      <div className="flex items-center justify-center h-screen">
+        <div className="max-w-md p-8 bg-white rounded-lg shadow-lg text-center">
+          <h1 className="text-2xl font-bold mb-4">Forgot Password!</h1>
+          <p>Enter your email and you will receive a reset link</p>
+          {errorMsg && <div className="text-red-500 mb-4">{errorMsg}</div>}
+          <input
+            value={emailValue}
+            onChange={(e) => setEmailValue(e.target.value)}
+            placeholder="someone@gmail.com"
+            className="mt-4 p-2 border rounded-md"
+          />
+          <button
+            type="button"
+            disabled={!emailValue}
+            onClick={onSubmitClicked}
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm disabled:opacity-50"
+          >
+            Send Reset Link
+          </button>
+        </div>
       </div>
-    </div>
+    </MainBackground>
   );
 }
 

@@ -5,6 +5,7 @@ import axios from 'axios';
 import useToken from '../auth/useToken';
 import EmailVerificationFail from './EmailVerificationFail';
 import EmailVerificationSuccess from './EmailVerificationSuccess';
+import MainBackground from '../components/MainBackground';
 
 function EmailVerificationPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +32,11 @@ function EmailVerificationPage() {
   }, [setToken, verificationString]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <MainBackground>
+        <p>Loading...</p>;
+      </MainBackground>
+    );
   }
   if (!isSuccess) return <EmailVerificationFail />;
   return <EmailVerificationSuccess />;

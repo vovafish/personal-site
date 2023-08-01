@@ -17,6 +17,7 @@ import PasswordResetPage from './pages/PasswordResetPage';
 import AskmeFail from './pages/AskmeFail';
 import AskmeSuccess from './pages/AskmeSuccess';
 import ContactForm from './pages/AskMe';
+import Policy from './pages/Policy';
 
 export function App() {
   return (
@@ -43,6 +44,7 @@ export function App() {
         <Route path="/askme-success" element={<AskmeSuccess />} />
         <Route path="/projects" element={<ProjectListPage />} />
         <Route path="/projects/:projectId" element={<ProjectPage />} />
+        <Route path="/policy" element={<Policy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

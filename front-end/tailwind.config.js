@@ -10,6 +10,9 @@ module.exports = {
         inconsolata: ['Inconsolata', 'monospace'],
         tektur: ['Tektur', 'sans-serif'],
       },
+      fontSize: {
+        '12xl': '12rem',
+      },
     },
   },
   plugins: [],

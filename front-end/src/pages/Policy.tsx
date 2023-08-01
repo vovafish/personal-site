@@ -1,11 +1,11 @@
 import MainBackground from '../components/MainBackground';
 
-function UserPage() {
+function Policy() {
   return (
     <MainBackground>
-      <div>UserPage</div>;
+      <div>Policy</div>;
     </MainBackground>
   );
 }
 
-export default UserPage;
+export default Policy;
