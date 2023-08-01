@@ -4,7 +4,7 @@ import MainBackground from '../components/MainBackground';
 function Home() {
   return (
     <MainBackground>
-      <div className="min-h-screen flex items-center justify-center pt-20">
+      <div className="min-h-screen flex items-center justify-center pt-20 pb-5">
         <div className="max-w-4xl mx-auto px-6 py-4 bg-white rounded-lg shadow-lg">
           <h1 className="text-4xl font-bold mb-6 text-center text-black">
             Hey there!

@@ -110,8 +110,12 @@ function ProjectPage() {
           </div>
           <Link
             to="/projects"
-            className="mt-4 ml-10 text-blue-500 hover:text-blue-700"
+            className="mt-4 ml-10 text-blue-500 hover:text-blue-700 relative"
           >
+            <span
+              className="absolute -left-5 top-1/2 w-3 h-3 bg-blue-500 transform -translate-y-1/2"
+              style={{ clipPath: 'polygon(100% 0, 0% 50%, 100% 100%)' }}
+            />
             Back
           </Link>
         </div>

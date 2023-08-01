@@ -51,10 +51,17 @@ function ProjectsList({ projects }: ProjectsListProps) {
                 </p>
               </div>
 
-              <Link to={`/projects/${project.link}`}>
+              <Link
+                to={`/projects/${project.link}`}
+                className="mt-auto relative inline-block"
+              >
                 <button className="mt-auto" type="button">
                   Check this out
                 </button>
+                <span
+                  className="absolute left-full top-1/2 w-3 h-3 bg-blue-500 transform -translate-y-1/2"
+                  style={{ clipPath: 'polygon(0 0, 100% 50%, 0 100%)' }}
+                />
               </Link>
             </div>
           </div>

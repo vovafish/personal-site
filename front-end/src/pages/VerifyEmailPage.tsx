@@ -10,7 +10,7 @@ function PleaseVerifyEamilPage() {
   useEffect(() => {
     setTimeout(() => {
       navigate('/');
-    }, 3000);
+    }, 6000);
   }, [navigate]);
 
   return (
