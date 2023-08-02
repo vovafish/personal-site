@@ -10,6 +10,7 @@ import NotFound from './NotFound';
 import CommentsList from '../components/CommentsList';
 import AddCommentForm from '../components/AddCommentForm';
 import MainBackground from '../components/MainBackground';
+import useUser from '../auth/useUser';
 
 function ProjectPage() {
   const [projectInfo, setProjectInfo] = useState({
@@ -22,6 +23,8 @@ function ProjectPage() {
   });
 
   const { projectId } = useParams();
+
+  const user = useUser();
 
   useEffect(() => {
     const loadProjectInfo = async () => {
@@ -71,15 +74,29 @@ function ProjectPage() {
               {projectInfo.name}
             </a>
           </div>
-          <div className="mt-2">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={addUpvote}
-              type="button"
-            >
-              Upvote
-            </button>
-          </div>
+          {user ? (
+            <div className="mt-2">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={addUpvote}
+                type="button"
+              >
+                Upvote
+              </button>
+            </div>
+          ) : (
+            <div className="mt-2">
+              <button
+                disabled
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded tooltip"
+                onClick={addUpvote}
+                type="button"
+                data-tooltip="Login to upvote the project!"
+              >
+                Upvote
+              </button>
+            </div>
+          )}
           <p className="mt-2 text-sm text-gray-700">
             {projectInfo?.upvotes
               ? `${projectInfo?.upvotes} upvote(s)`

@@ -7,10 +7,38 @@ body {
 }
 /* Change the color of the left arrow */
 .slick-prev:before {
-    color: black; /* Change this to your desired color */
-  }
-  
-  /* Change the color of the right arrow */
-  .slick-next:before {
-    color: black; /* Change this to your desired color */
-  }
+  color: black; /* Change this to your desired color */
+}
+
+/* Change the color of the right arrow */
+.slick-next:before {
+  color: black; /* Change this to your desired color */
+}
+/* Styling for the tooltip */
+/* Styling for the tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 50%;
+  left: 100%; /* Position the tooltip to the right of the button */
+  transform: translateY(-50%);
+  padding: 0.5rem;
+  background-color: #333;
+  color: red;
+  margin-left: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  white-space: nowrap; /* Prevent the tooltip from wrapping */
+}
+
+.tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
