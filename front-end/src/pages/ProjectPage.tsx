@@ -24,6 +24,8 @@ function ProjectPage() {
 
   const { projectId } = useParams();
 
+  const [error, setError] = useState('');
+
   const user = useUser();
 
   useEffect(() => {
@@ -45,9 +47,26 @@ function ProjectPage() {
   // const { projectId } = params;
 
   const addUpvote = async () => {
-    const response = await axios.put(`/api/projects/${projectId}/upvote`);
-    const updatedProject = response.data;
-    setProjectInfo(updatedProject);
+    // Check if the user is authenticated
+    if (!user) {
+      // If the user is not authenticated, show a message or redirect them to the login page
+      // For example, you can show a toast message or redirect them to the login page
+      return;
+    }
+
+    try {
+      // Send the upvote request to the back-end with the user_id
+      const response = await axios.put(`/api/projects/${projectId}/upvote`, {
+        user_id: user.id, // Assuming you have the user ID in the `user` object from authentication
+      });
+
+      // Update the projectInfo state with the updated project details
+      const updatedProject = response.data;
+      setProjectInfo(updatedProject);
+    } catch (e) {
+      // Handle any errors that may occur during the upvote process
+      setError('You can upvote only once :)');
+    }
   };
 
   if (!projectInfo) {
@@ -70,7 +89,7 @@ function ProjectPage() {
         {/* Left Column - Main Content */}
         <div className="w-full lg:w-2/3 bg-white rounded-lg shadow-lg p-10">
           <div className="mb-8">
-            <a href="#" className="text-2xl font-bold text-gray-900">
+            <a href="#" className="text-4xl font-bold text-gray-900">
               {projectInfo.name}
             </a>
           </div>
@@ -83,6 +102,7 @@ function ProjectPage() {
               >
                 Upvote
               </button>
+              <span className="pl-2 text-red-600 font-bold">{error}</span>
             </div>
           ) : (
             <div className="mt-2">

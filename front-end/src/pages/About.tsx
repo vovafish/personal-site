@@ -4,11 +4,11 @@ import MainBackground from '../components/MainBackground';
 
 function About() {
   const frontEndDependencies = [
-    'react',
+    'ReactTS',
+    'Tailwind',
     'react-dom',
     'react-router-dom',
     'axios',
-    'prop-types',
     'react-slick',
     'slick-carousel',
   ];
@@ -22,6 +22,7 @@ function About() {
 
   const backEndDependencies = [
     'express',
+    'nodejs',
     'bcrypt',
     'jsonwebtoken',
     'mongodb',

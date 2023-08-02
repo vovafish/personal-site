@@ -33,6 +33,19 @@ function SignUpPage() {
       setError('Please fill in all fields.');
       return;
     }
+    if (firstNameValue.length < 2 || lastNameValue.length < 2) {
+      setError('Please enter a valid name');
+      return;
+    }
+    if (passwordValue.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+    // Check if password is strong enough (contains both numbers and characters)
+    if (!/(?=.*[a-zA-Z])(?=.*\d)/.test(passwordValue)) {
+      setError('Password must contain both numbers and characters.');
+      return;
+    }
     if (passwordValue !== confirmPasswordValue) {
       setError('Make sure that password and confirm password are the same');
       return;
@@ -52,6 +65,7 @@ function SignUpPage() {
       const { token } = response.data;
       setToken(token);
       navigate('/please-verify');
+      window.location.reload();
     } catch (e) {
       setError('User with this email aready exists');
     }
@@ -112,7 +126,7 @@ function SignUpPage() {
                 name="email"
                 id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="name@company.com"
+                placeholder="someone@gmail.com"
               />
             </div>
             <div>

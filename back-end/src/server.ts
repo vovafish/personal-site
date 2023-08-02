@@ -36,20 +36,43 @@ app.get('/api/projects/:link', async (req, res) => {
 
 app.put('/api/projects/:link/upvote', async (req, res) => {
   const { link } = req.params;
+  const { user_id } = req.body; // Assuming you have the user_id of the current user in the request body
 
+  // Check if the user has already upvoted the project
+  const project = await db.collection('projects').findOne({ link, upvotedBy: user_id });
+
+  if (project) {
+    // If the user has already upvoted the project, return an error response
+    return res.status(400).json({ message: 'You have already upvoted this project.' });
+  }
+
+  // If the user hasn't upvoted the project, increment the upvotes count and add the user_id to the upvotedBy array
   await db.collection('projects').updateOne(
     { link },
     {
       $inc: { upvotes: 1 },
+      $push: { upvotedBy: user_id },
     }
   );
-  const project = await db.collection('projects').findOne({ link });
-  if (project) {
-    res.json(project);
+
+  // Get the updated project details
+  const updatedProject = await db.collection('projects').findOne({ link });
+
+  if (updatedProject) {
+    res.json(updatedProject);
   } else {
-    res.send(`That project doesn't exists`);
+    res.send(`That project doesn't exist`);
   }
 });
+
+app.post('/api/suggestion', async (req, res) => {
+  const { postedBy, text, date } = req.body;
+
+  await db.collection('suggestions').updateOne({}, {
+    $push: { comments: { postedBy, text, date } },
+  });
+  
+})
 
 app.post('/api/projects/:link/comments', async (req, res) => {
   const { link } = req.params;
@@ -133,7 +156,7 @@ app.post('/api/register', async (req, res) => {
   const user = await db.collection('users').findOne({ email });
 
   if (user) {
-    res.sendStatus(409); // conflict code error
+    return res.sendStatus(409); // conflict code error
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
