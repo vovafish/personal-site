@@ -29,6 +29,7 @@ function LoginPage() {
       const { token } = response.data;
       setToken(token);
       navigate('/projects');
+      window.location.reload();
     } catch (e) {
       setError('Invalid email or password. Please try again.');
     }
