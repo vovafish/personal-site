@@ -12,7 +12,6 @@ prod-env.yaml
 .env
 node_modules
 dist
-output
 dist-ssr
 *.local
 
