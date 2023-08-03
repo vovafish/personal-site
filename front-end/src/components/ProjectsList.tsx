@@ -33,11 +33,13 @@ function ProjectsList({ projects }: ProjectsListProps) {
             key={project.link}
             className="w-64 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-8 flex flex-col"
           >
-            <img
-              className="rounded-t-lg w-full h-48"
-              src={project.image[0]}
-              alt={project.name}
-            />
+            {project.image && ( // Check if project.image is defined before rendering the image
+              <img
+                className="rounded-t-lg w-full h-48"
+                src={project.image[0]}
+                alt={project.name}
+              />
+            )}
 
             <div className="p-6 flex flex-col justify-between flex-1">
               <div>

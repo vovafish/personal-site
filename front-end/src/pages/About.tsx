@@ -1,5 +1,3 @@
-import React from 'react';
-
 import MainBackground from '../components/MainBackground';
 
 function About() {

@@ -9,16 +9,21 @@ function ContactForm() {
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
 
-  const sendEmail = (e) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Check if the form reference is not null
+    if (!form.current) {
+      return;
+    }
 
     // Perform your form validation here
     const formData = new FormData(form.current);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
+    const name = formData.get('name')?.toString() ?? '';
+    const email = formData.get('email')?.toString() ?? '';
+    const message = formData.get('message')?.toString() ?? '';
 
     // Example: Check if the name field is empty
     if (!name) {
@@ -60,10 +65,10 @@ function ContactForm() {
         'OobbSW-DHtFMhWbqK'
       )
       .then(
-        (result) => {
+        () => {
           navigate('/askme-success');
         },
-        (error) => {
+        () => {
           navigate('/askme-fail');
         }
       );
