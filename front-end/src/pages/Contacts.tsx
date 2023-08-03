@@ -1,4 +1,3 @@
-import React from 'react';
 import MainBackground from '../components/MainBackground';
 
 function Contacts() {
@@ -67,11 +66,11 @@ function Contacts() {
               <h2 className="text-xl font-semibold">VKontakte:</h2>
               <p className="text-blue-500 hover:underline">
                 <a
-                  href="https://www.youtube.com/channel/UCvymxnNes4am2pyjbXgmgog"
+                  href="http://vk.com/m9ymur"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  ...
+                  http://vk.com/m9ymur
                 </a>
               </p>
             </div>

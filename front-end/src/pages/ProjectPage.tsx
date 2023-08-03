@@ -20,6 +20,7 @@ function ProjectPage() {
     description: '',
     stack: [],
     image: [],
+    view: '',
   });
 
   const { projectId } = useParams();
@@ -89,9 +90,19 @@ function ProjectPage() {
         {/* Left Column - Main Content */}
         <div className="w-full lg:w-2/3 bg-white rounded-lg shadow-lg p-10">
           <div className="mb-8">
-            <a href="#" className="text-4xl font-bold text-gray-900">
+            <span className="text-4xl font-bold text-gray-900">
               {projectInfo.name}
-            </a>
+            </span>
+            {projectInfo.view && (
+              <a
+                href={projectInfo.view}
+                target="_blank"
+                className="text-xl font-bold text-blue-600 ml-5"
+                rel="noreferrer"
+              >
+                Check it Live
+              </a>
+            )}
           </div>
           {user ? (
             <div className="mt-2">
@@ -170,6 +181,8 @@ function ProjectPage() {
                 comments: never[];
                 description: string;
                 stack: never[];
+                image: never[];
+                view: string;
               }>
             ) => setProjectInfo(updatedProject)}
           />
